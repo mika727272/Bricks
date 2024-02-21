@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author jkbbby
- *
- */
-module Bricks {
-}
