@@ -1,3 +1,5 @@
+import java.awt.*;
+
 package main;
 public class Ball {
     private int x, y, size;
@@ -10,3 +12,7 @@ public class Ball {
 
     // Add getters and setters
 }
+
+//public Ball(int x, int y, int width, int height, Color color) {
+		super(x, y, width, height, color);
+		setOnScreen(true);
