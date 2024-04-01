@@ -7,9 +7,9 @@ public class Window extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        // Add the game to the window
+        // Hozzáadjuk a játékot az ablakohoz
         add(game);
-        // Make the window visible
+        // Láthatóvá lesz téve az ablak
         setVisible(true);
     }
 }
