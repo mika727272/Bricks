@@ -1,5 +1,7 @@
 package main;
 import javax.swing.JFrame;
+import java.awt.*;
+
 
 public class BrickGame extends JFrame {
     /**
