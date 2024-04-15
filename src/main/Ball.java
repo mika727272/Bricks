@@ -1,57 +1,52 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
 
+public class Ball {
+    private int x, y;
+    private int velX = 2, velY = 2;
+    private final int SIZE = 15;
 
-//A Labda pozicíója
-public class BrickBreakerBall extends JPanel implements ActionListener {
-    private int ballX = 250;
-    private int ballY = 250;
-    private int ballXSpeed = 2;
-    private int ballYSpeed = 3;
-
-
-// A labda időlimitje	
-    public BrickBreakerBall() {
-        Timer timer = new Timer(20, this);
-        timer.start();
+    public Ball() {
+        x = 200;
+        y = 200;
     }
 
-	//Labda színe
-	
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.GREEN);
-        g.fillOval(ballX, ballY, 20, 20);
-    }
-
-//Labda Sebessége
-	
-    public void actionPerformed(ActionEvent e) {
-        ballX += ballXSpeed;
-        ballY += ballYSpeed;
-        
-        if (ballX <= 0 || ballX >= 240) {
-            ballXSpeed = -ballXSpeed;
+    public void move() {
+        x += velX;
+        y += velY;
+        if (x < 0 || x > 400 - SIZE) {
+            velX = -velX;
         }
-        if (ballY <= 0 || ballY >= 240) {
-            ballYSpeed = -ballYSpeed;
+        if (y < 0 || y > 400 - SIZE) {
+            velY = -velY;
         }
-
-        repaint();
     }
 
-//A labda új játékban kezdene
-	
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Brick Breaker Ball");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        BrickBreakerBall game = new BrickBreakerBall();
-        frame.add(game);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
+    public void checkCollision(Paddle paddle, Brick[] bricks) {
+        Rectangle ballRect = getBounds();
+        Rectangle paddleRect = paddle.getBounds();
+        if (ballRect.intersects(paddleRect)) {
+            velY = -velY;
+        }
+        for (Brick brick : bricks) {
+            if (!brick.isDestroyed() && ballRect.intersects(brick.getBounds())) {
+                brick.setDestroyed(true);
+                velY = -velY;
+            }
+        }
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillOval(x, y, SIZE, SIZE);
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, SIZE, SIZE);
     }
 }
+
 
 
 
