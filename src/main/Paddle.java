@@ -1,55 +1,49 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.Rectangle;
+import java.awt.Color;
 
-public class BrickBreakerPaddle extends JPanel implements KeyListener, ActionListener {
-    private int paddleX = 200;
-    private final int paddleY = 480;
-    private final int paddleWidth = 100;
-    private final int paddleHeight = 10;
-    private Timer timer;
+public class Paddle {
+    private int x, y;
+    private int velX = 0;
+    private final int SPEED = 5;
+    private final int WIDTH = 100, HEIGHT = 10;
 
-    public BrickBreakerPaddle() {
-        addKeyListener(this);
-        setFocusable(true);
-        timer = new Timer(10, this);
-        timer.start();
+    public Paddle() {
+        x = 200;
+        y = 350;
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.BLUE);
-        g.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        repaint();
+    public void move() {
+        x += velX;
+        if (x < 0) {
+            x = 0;
+        } else if (x > 400 - WIDTH) {
+            x = 400 - WIDTH;
+        }
     }
 
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT && paddleX > 0) {
-            paddleX -= 20;
-        }
-        if (key == KeyEvent.VK_RIGHT && paddleX < getWidth() - paddleWidth) {
-            paddleX += 20;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            velX = -SPEED;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            velX = SPEED;
         }
     }
 
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+        velX = 0;
+    }
 
-    public void keyTyped(KeyEvent e) {}
+    public void draw(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.fillRect(x, y, WIDTH, HEIGHT);
+    }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Brick Breaker Paddle");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        BrickBreakerPaddle game = new BrickBreakerPaddle();
-        frame.add(game);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, WIDTH, HEIGHT);
     }
 }
-
 
 
 
