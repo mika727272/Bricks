@@ -5,20 +5,20 @@ import java.awt.Color;
 public class Ball {
     private int x, y;
     private int velX = 2, velY = 2;
-    private final int SIZE = 15;
+    private final int SIZE = 20;
 
     public Ball() {
-        x = 200;
-        y = 200;
+        x = 190;
+        y = 490;
     }
 
     public void move() {
         x += velX;
         y += velY;
-        if (x < 0 || x > 400 - SIZE) {
+        if (x < 0 || x > 500 - SIZE) {
             velX = -velX;
         }
-        if (y < 0 || y > 400 - SIZE) {
+        if (y < 0 || y > 500 - SIZE) {
             velY = -velY;
         }
     }
@@ -60,10 +60,9 @@ public class Ball {
         //size = 20;
         //x = 190;
         //y = 490;
-    }
+
 
     // Add getters and setters
-}
 
 //public Ball(int x, int y, int width, int height, Color color) {
 		//super(x, y, width, height, color);
