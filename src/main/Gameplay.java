@@ -61,7 +61,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 		g.drawString(""+score, 590, 30);
 		
 		//the paddle
-		g.setColor(Color.white);
+		g.setColor(Color.green);
 		g.fillRect(playerX, 551, 100, 8);
 		
 		//the ball
