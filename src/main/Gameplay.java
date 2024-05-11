@@ -84,12 +84,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 			play = false;
 			ballXdir = 0;
 			ballYdir = 0;
-			g.setColor(Color.red);
+			g.setColor(Color.blue);
 			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Játéknak vége, Pontok: ", 190, 300);
+			g.drawString("Játéknak vége!", 250, 300);
 			
 			g.setFont(new Font("serif", Font.BOLD, 20));
-			g.drawString("Egy Enter gomb és újrakezdheted a játékot!", 230, 350);
+			g.drawString("Egy Enter gomb és újrakezdheted a játékot!", 170, 350);
 		}
 		
 		g.dispose();
