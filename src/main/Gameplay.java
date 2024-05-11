@@ -42,30 +42,30 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	}
 	
 	public void paint(Graphics g) {
-		//background
-		g.setColor(Color.black);
+		//Háttere a játéknak
+		g.setColor(Color.white);
 		g.fillRect(1,1, 692, 592);
 		
-		//drawing map
+		//Térképnek a kirajzolása
 		map.draw((Graphics2D)g);
 		
-		// borders
+		// Határai a játéknak
 		g.setColor(Color.yellow);
 		g.fillRect(0, 0, 3, 592);
 		g.fillRect(0, 0, 692, 3);
 		g.fillRect(691, 0, 3, 592);
 		
-		//scores
-		g.setColor(Color.white);
+		//Eredmények
+		g.setColor(Color.black);
 		g.setFont(new Font("serif" , Font.BOLD, 25));
 		g.drawString(""+score, 590, 30);
 		
-		//the paddle
+		//Paddle a játékban
 		g.setColor(Color.green);
 		g.fillRect(playerX, 551, 100, 8);
 		
-		//the ball
-		g.setColor(Color.yellow);
+		//Labda a játékban
+		g.setColor(Color.red);
 		g.fillOval(ballposX, ballposY, 20, 20);
 		
 		if(totalBricks <= 0) {
@@ -74,10 +74,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 			ballYdir = 0;
 			g.setColor(Color.red);
 			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("You Win: ", 260, 300);
+			g.drawString("Győztél: ", 260, 300);
 			
 			g.setFont(new Font("serif", Font.BOLD, 20));
-			g.drawString("Press Enter to Restart", 230, 350);
+			g.drawString("Egy Enter gomb és újrakezdheted a játékot!", 230, 350);
 		}
 		
 		if(ballposY > 570) {
@@ -86,10 +86,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 			ballYdir = 0;
 			g.setColor(Color.red);
 			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Game Over, Scores: ", 190, 300);
+			g.drawString("Játéknak vége, Pontok: ", 190, 300);
 			
 			g.setFont(new Font("serif", Font.BOLD, 20));
-			g.drawString("Press Enter to Restart", 230, 350);
+			g.drawString("Egy Enter gomb és újrakezdheted a játékot!", 230, 350);
 		}
 		
 		g.dispose();
@@ -151,7 +151,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	public void keyTyped(KeyEvent e) {	
 	}
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) { // Játék irányítással billentyűzettel
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if(playerX >=600) {
 				playerX = 600;
@@ -195,4 +195,3 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	}
 
 }
-
